@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: tsea_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: rootpassword
+      POSTGRES_DB: tsea_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - tsea_db_data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  tsea_db_data:

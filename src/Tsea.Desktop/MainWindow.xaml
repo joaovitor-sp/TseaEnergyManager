@@ -1,0 +1,30 @@
+<Window x:Class="Tsea.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tsea.Desktop"
+        xmlns:views="clr-namespace:Tsea.Desktop.Views"
+        mc:Ignorable="d"
+        Title="TSEA Energy - Equipment Manager" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="250" />
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column="0" Content="Carregar Tabela" Command="{Binding LoadEquipmentsCommand}" Width="150" HorizontalAlignment="Left" Padding="5" />
+            
+            <views:StatsControl Grid.Column="2" />
+        </Grid>
+        
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Equipments}" AutoGenerateColumns="True" IsReadOnly="True" />
+    </Grid>
+</Window>

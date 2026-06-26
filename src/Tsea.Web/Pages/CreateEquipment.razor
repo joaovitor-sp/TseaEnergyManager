@@ -1,0 +1,90 @@
+@page "/equipments/create"
+@using Tsea.Domain.Models
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+<PageTitle>Novo Equipamento - TSEA Energy</PageTitle>
+
+<h1>Cadastrar Equipamento</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <EditForm Model="@equipment" OnValidSubmit="HandleValidSubmit">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nome do Equipamento</label>
+                <InputText id="name" class="form-control" @bind-Value="equipment.Name" />
+            </div>
+
+            <div class="mb-3">
+                <label for="type" class="form-label">Tipo</label>
+                <InputText id="type" class="form-control" @bind-Value="equipment.Type" />
+            </div>
+
+            <div class="mb-3">
+                <label for="serial" class="form-label">Número de Série</label>
+                <InputText id="serial" class="form-control" @bind-Value="equipment.SerialNumber" />
+            </div>
+
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <InputSelect id="status" class="form-control" @bind-Value="equipment.Status">
+                    <option value="Operante">Operante</option>
+                    <option value="Manutenção">Manutenção</option>
+                    <option value="Inativo">Inativo</option>
+                </InputSelect>
+            </div>
+
+            <div class="mb-3">
+                <label for="date" class="form-label">Data de Instalação</label>
+                <InputDate id="date" class="form-control" @bind-Value="equipment.InstallationDate" />
+            </div>
+
+            <button type="submit" class="btn btn-primary" disabled="@isSubmitting">
+                @if (isSubmitting)
+                {
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    <span> Salvando...</span>
+                }
+                else
+                {
+                    <span>Salvar Equipamento</span>
+                }
+            </button>
+            <button type="button" class="btn btn-secondary ms-2" @onclick="GoBack">Cancelar</button>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private Equipment equipment = new Equipment 
+    { 
+        InstallationDate = DateTime.SpecifyKind(DateTime.Today, DateTimeKind.Utc),
+        Status = "Operante"
+    };
+    private bool isSubmitting = false;
+
+    private async Task HandleValidSubmit()
+    {
+        isSubmitting = true;
+        try
+        {
+            equipment.InstallationDate = DateTime.SpecifyKind(equipment.InstallationDate, DateTimeKind.Utc);
+            
+            var response = await Http.PostAsJsonAsync("/api/equipments", equipment);
+            if (response.IsSuccessStatusCode)
+            {
+                NavManager.NavigateTo("/equipments");
+            }
+        }
+        finally
+        {
+            isSubmitting = false;
+        }
+    }
+
+    private void GoBack()
+    {
+        NavManager.NavigateTo("/equipments");
+    }
+}

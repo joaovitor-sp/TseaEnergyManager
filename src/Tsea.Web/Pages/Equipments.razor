@@ -1,0 +1,53 @@
+@page "/equipments"
+@using Tsea.Domain.Models
+@inject HttpClient Http
+
+<PageTitle>Equipamentos - TSEA Energy</PageTitle>
+
+<h1>Painel de Equipamentos</h1>
+
+<p>Acompanhamento em tempo real dos equipamentos cadastrados (WPF).</p>
+
+@if (equipments == null)
+{
+    <p><em>Carregando...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>Status</th>
+                <th>Instalação</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var equip in equipments)
+            {
+                <tr>
+                    <td>@equip.Name</td>
+                    <td>@equip.Type</td>
+                    <td>@equip.Status</td>
+                    <td>@equip.InstallationDate.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Equipment[]? equipments;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            equipments = await Http.GetFromJsonAsync<Equipment[]>("/api/equipments");
+        }
+        catch
+        {
+        }
+    }
+}
