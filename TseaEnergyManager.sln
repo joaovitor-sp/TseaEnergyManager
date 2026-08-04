@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tsea.Web", "src\Tsea.Web\Ts
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tsea.Desktop", "src\Tsea.Desktop\Tsea.Desktop.csproj", "{7BEEB2C9-2EFE-4B83-897F-28A87CEDAD6E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tsea.Api.Tests", "tests\Tsea.Api.Tests\Tsea.Api.Tests.csproj", "{A2A9D7EC-54B3-4DFD-969B-1BA21BEC247A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{7BEEB2C9-2EFE-4B83-897F-28A87CEDAD6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BEEB2C9-2EFE-4B83-897F-28A87CEDAD6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BEEB2C9-2EFE-4B83-897F-28A87CEDAD6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2A9D7EC-54B3-4DFD-969B-1BA21BEC247A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2A9D7EC-54B3-4DFD-969B-1BA21BEC247A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2A9D7EC-54B3-4DFD-969B-1BA21BEC247A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2A9D7EC-54B3-4DFD-969B-1BA21BEC247A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8FE7B4CE-CFB8-49A8-974C-BDAC4E56E4FA} = {86436D68-B7F1-4F2C-AC51-53088966F0EC}

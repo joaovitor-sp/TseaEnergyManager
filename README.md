@@ -48,3 +48,16 @@ No Visual Studio, o ecossistema precisa rodar simultaneamente:
    - `Tsea.Web`
 
 Pressione `F5`. O Visual Studio abrirá automaticamente a API, a interface Web no navegador e o aplicativo Desktop. As alterações feitas em qualquer um dos clientes refletem globalmente no banco de dados.
+
+## Testes
+
+Os testes da API ficam no projeto `Tsea.Api.Tests` e são separados em:
+
+- **Unitários:** verificam regras simples do domínio e a configuração do modelo do Entity Framework Core.
+- **Integração:** iniciam a API real em memória, exercitam os endpoints CRUD por HTTP e usam um SQLite em memória isolado do PostgreSQL local.
+
+Para executá-los:
+
+```bash
+dotnet test
+```
